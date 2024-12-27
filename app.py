@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Update Secret key for authentication
-FINNHUB_SECRET = "ctn82r9r01qjlgirl9i0ctn82r9r01qjlgirl9ig"
+# Correct Secret key for authentication (configured in Finnhub)
+FINNHUB_SECRET = "ctn7a89r01qjlgirjmfg"
 
 @app.route('/', methods=['GET'])
 def home():
@@ -20,8 +20,9 @@ def webhook():
         print(f"Invalid Content-Type: {request.content_type}")  # Log invalid Content-Type
         return jsonify({"error": "Invalid Content-Type. Expected application/json"}), 415
 
-    # Verify the source of the request
+    # Verify the source of the request using the X-Finnhub-Secret header
     if request.headers.get('X-Finnhub-Secret') != FINNHUB_SECRET:
+        print("Invalid or missing X-Finnhub-Secret")  # Log the invalid secret error
         return jsonify({"error": "Unauthorized"}), 401
 
     # Process the incoming data
