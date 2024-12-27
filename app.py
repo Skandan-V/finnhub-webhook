@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Correct Secret key for authentication (configured in Finnhub)
-FINNHUB_SECRET = "ctn7a89r01qjlgirjmfg"
+FINNHUB_SECRET = "ctn88apr01qjlgirlk1g"
 
 @app.route('/', methods=['GET'])
 def home():
