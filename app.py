@@ -11,7 +11,7 @@ def home():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    # Check if the Content-Type is JSON
+    # Check if the Content-Type is application/json
     if request.content_type != 'application/json':
         return jsonify({"error": "Invalid Content-Type. Expected application/json"}), 415
 
@@ -28,4 +28,3 @@ def webhook():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-    
